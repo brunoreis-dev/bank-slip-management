@@ -13,3 +13,67 @@
  *= require_tree .
  *= require_self
  */
+
+:root {
+  --background: #2e2e2e;
+  --comments: #797979;
+  --white: #d6d6d6;
+  --yellow: #e5b567;
+  --green: #b4d273;
+  --orange: #e87d3e;
+  --purple: #9e86c8;
+  --red: #cc0000;
+  --blue: #6c99bb;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--white);
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+button,
+input[type="submit"] {
+  cursor: pointer;
+}
+
+button,
+input,
+textarea {
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+button,
+input,
+textarea,
+a,
+p,
+h1,
+h2,
+h3 {
+  color: var(--white);
+  margin: 0;
+}
+
+.notice-container:not(:empty) {
+  background-color: var(--green);
+  color: #fff;
+  margin: 0;
+  padding: 15px 25px;
+}
+
+.errors-container {
+  background-color: var(--red);
+  color: #fff;
+  margin: 0;
+  padding: 15px 25px;
+}
+
+.errors-container > h2 {
+  color: #fff;
+}

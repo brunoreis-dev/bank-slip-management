@@ -1,0 +1,27 @@
+.header,
+.header {
+  background-color: #000;
+  margin: 0;
+  padding: 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Generic Buttons  */
+
+.action-button {
+  background-color: var(--blue);
+  border: thin solid transparent;
+  font-size: inherit;
+  text-decoration: none;
+  padding: 10px 25px;
+  display: block;
+  max-width: max-content;
+}
+
+.action-button:hover {
+  background-color: var(--white);
+  border-color: var(--blue);
+  color: var(--blue);
+}

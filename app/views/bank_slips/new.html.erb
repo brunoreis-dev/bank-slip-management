@@ -1,4 +1,7 @@
-<h1 class="header">Criar Boleto</h1>
+<div class="header">
+  <h1>Criar Boleto</h1>
+  <%= link_to 'Voltar', bank_slips_path, class: ['action-button', 'back-button']
+  %>
+</div>
 
-<%= link_to 'Voltar', bank_slips_path, class: ['action-button', 'back-button']
-%>
+<%= render 'form', readonly: false %>
