@@ -1,0 +1,2 @@
+module BankSlipHelper
+end
