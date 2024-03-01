@@ -1,9 +1,5 @@
 require 'boletosimples'
-# require 'dalli'
-
-  # BoletoSimples.configure do |c|
-  #
-  # end
+require 'dalli'
 
 BoletoSimples.configure do |c|
   c.environment = ENV['BOLETOSIMPLES_ENV'].to_sym # defaut :sandbox

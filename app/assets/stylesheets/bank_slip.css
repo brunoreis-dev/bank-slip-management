@@ -8,38 +8,48 @@
   align-items: center;
 }
 
-.container {
+.main {
   padding: 25px;
 }
 
-.sub-title {
-  font-size: 1.625rem;
-}
-
-.slips-container {
-  margin-top: 30px;
+.container {
   width: 100%;
+  background-color: var(--comments);
+  border-radius: 2px;
+  padding: 20px;
+  margin: 0 auto;
 }
 
 .slips-container {
   overflow-y: hidden;
   overflow-x: auto;
+  margin-top: 8px;
+  width: 100%;
+}
+
+.sub-title {
+  font-size: 1rem;
 }
 
 .slips-container table {
   width: 100%;
+  border-collapse: collapse;
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 .slips-container th {
   color: var(--blue);
+  background-color: var(--background);
 }
 
 .slips-container th,
 .slips-container td {
-  font-size: 1.25rem;
+  font-size: 1rem;
   text-align: left;
   white-space: nowrap;
-  padding: 8px 12px;
+  border-bottom: 1px solid var(--background);
+  padding: 8px 16px;
 }
 
 /* Bank Slip */
@@ -53,9 +63,11 @@
 .svg-button,
 .svg-button svg,
 .svg-button button,
-.svg-button form {
+.svg-button form,
+.svg-button a {
   width: 1.563rem;
   height: 1.563rem;
+  display: block;
 }
 
 /* Generic Buttons  */

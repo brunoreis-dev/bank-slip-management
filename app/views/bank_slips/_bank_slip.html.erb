@@ -1,21 +1,22 @@
-<td><%= bank_slip.amount %></td>
-<td><%= bank_slip.expire_at %></td>
+<td><%= bank_slip.id %></td>
 <td><%= bank_slip.customer_person_name %></td>
 <td><%= bank_slip.customer_cnpj_cpf %></td>
-<td><%= bank_slip.customer_state %></td>
-<td><%= bank_slip.customer_city_name %></td>
-<td><%= bank_slip.customer_zipcode %></td>
-<td><%= bank_slip.customer_address %></td>
-<td><%= bank_slip.customer_neighborhood %></td>
-<td class="svg-buttons">
-  <div class="svg-button">
-    <%= link_to edit_bank_slip_path(bank_slip.id) do %> <%=
-    image_tag("pencil.svg", inline: true) %> <% end %>
-  </div>
-  <div class="svg-button">
-    <%= form_tag(bank_slips_cancel_path(bank_slip.id), method: :patch, data: {
-    confirm: 'Are you sure?' }) do %>
-    <button type="submit"><%= image_tag("cancel.svg", inline: true) %></button>
-    <% end %>
+<td><%= Date.parse(bank_slip.expire_at).strftime("%d/%m/%Y") %></td>
+<td><%= bank_slip.amount %></td>
+<td><%= bank_slip.status %></td>
+<td>
+  <div class="svg-buttons">
+    <div class="svg-button">
+      <%= link_to edit_bank_slip_path(bank_slip.id) do %> <%=
+      image_tag("pencil.svg", inline: true) %> <% end %>
+    </div>
+    <div class="svg-button">
+      <%= form_tag(bank_slips_cancel_path(bank_slip.id), method: :patch, data: {
+      confirm: 'Are you sure?' }) do %>
+      <button type="submit">
+        <%= image_tag("cancel.svg", inline: true) %>
+      </button>
+      <% end %>
+    </div>
   </div>
 </td>
