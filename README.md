@@ -23,18 +23,6 @@ Install all dependancies:
 $ bundle install
 ```
 
-Create the postgresql image on Docker:
-
-```
-$ docker-compose up
-```
-
-Create the database and run migrations:
-
-```
-$ rake db:create db:migrate
-```
-
 Start the server:
 
 ```

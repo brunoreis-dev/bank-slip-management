@@ -15,9 +15,7 @@ gem "dalli"
 gem "sprockets-rails"
 
 # Use sqlite3 as the database for Active Record
-# gem "sqlite3", "~> 1.4"
-# Use postgresql as the database for Active Record
-gem 'pg', '~> 1.5', '>= 1.5.5'
+gem "sqlite3", "~> 1.4"
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"
