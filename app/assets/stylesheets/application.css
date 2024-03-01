@@ -15,15 +15,15 @@
  */
 
 :root {
-  --background: #2e2e2e;
-  --comments: #797979;
-  --white: #d6d6d6;
-  --yellow: #e5b567;
-  --green: #b4d273;
+  --background: #1d1e1a;
+  --comments: #666666;
+  --white: #eeeede;
+  --yellow: #d8cf54;
+  --green: #91da08;
   --orange: #e87d3e;
-  --purple: #9e86c8;
-  --red: #cc0000;
-  --blue: #6c99bb;
+  --purple: #985df2;
+  --red: #ef0058;
+  --blue: #50cadd;
 }
 
 body {
@@ -33,6 +33,7 @@ body {
   font-size: 16px;
   line-height: 1.5;
   margin: 0;
+  overflow: hidden;
 }
 
 button,
@@ -46,6 +47,8 @@ textarea {
   font-family: "Roboto", sans-serif;
   font-size: 16px;
   line-height: 1.5;
+  background-color: transparent;
+  border: none;
 }
 
 button,
@@ -58,22 +61,23 @@ h2,
 h3 {
   color: var(--white);
   margin: 0;
+  padding: 0;
 }
 
 .notice-container:not(:empty) {
   background-color: var(--green);
-  color: #fff;
+  color: var(--background);
   margin: 0;
   padding: 15px 25px;
 }
 
 .errors-container {
   background-color: var(--red);
-  color: #fff;
+  color: var(--white);
   margin: 0;
   padding: 15px 25px;
 }
 
 .errors-container > h2 {
-  color: #fff;
+  color: var(--white);
 }

@@ -5,6 +5,12 @@ ruby "3.3.0"
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.1.3", ">= 7.1.3.2"
 
+# Use the boletosimples for integration Kobana API [https://github.com/BoletoSimples/boletosimples-ruby]
+gem "boletosimples"
+
+# Use the Dalli to implement cache for integration with boletosimples
+gem "dalli"
+
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 

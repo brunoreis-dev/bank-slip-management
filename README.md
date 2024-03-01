@@ -35,12 +35,6 @@ Create the database and run migrations:
 $ rake db:create db:migrate
 ```
 
-Run seeds:
-
-```
-$ rake db:seed
-```
-
 Start the server:
 
 ```

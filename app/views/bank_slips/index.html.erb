@@ -6,5 +6,27 @@
 <% if notice %>
 <p class="notice-container"><%= notice %></p>
 <% end %>
-<div></div>
-<%= link_to 'Editar', edit_bank_slip_path(1), class: "action-button" %>
+
+<div class="container">
+  <h2 class="sub-title">Boletos</h2>
+  <div class="slips-container">
+    <table>
+      <tr>
+        <th>Valor</th>
+        <th>Data de Vencimento</th>
+        <th>Nome</th>
+        <th>CPF</th>
+        <th>Estado</th>
+        <th>Cidade</th>
+        <th>CEP</th>
+        <th>Endereço</th>
+        <th>Bairro</th>
+        <th>Ações</th>
+      </tr>
+      <tr>
+        <% @bank_slips.each do |bank_slip| %> <%= render 'bank_slip', bank_slip:
+        bank_slip %> <% end %>
+      </tr>
+    </table>
+  </div>
+</div>

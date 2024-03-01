@@ -8,20 +8,72 @@
   align-items: center;
 }
 
+.container {
+  padding: 25px;
+}
+
+.sub-title {
+  font-size: 1.625rem;
+}
+
+.slips-container {
+  margin-top: 30px;
+  width: 100%;
+}
+
+.slips-container {
+  overflow-y: hidden;
+  overflow-x: auto;
+}
+
+.slips-container table {
+  width: 100%;
+}
+
+.slips-container th {
+  color: var(--blue);
+}
+
+.slips-container th,
+.slips-container td {
+  font-size: 1.25rem;
+  text-align: left;
+  white-space: nowrap;
+  padding: 8px 12px;
+}
+
+/* Bank Slip */
+
+.svg-buttons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.svg-button,
+.svg-button svg,
+.svg-button button,
+.svg-button form {
+  width: 1.563rem;
+  height: 1.563rem;
+}
+
 /* Generic Buttons  */
 
 .action-button {
-  background-color: var(--blue);
+  background-color: var(--yellow);
+  color: var(--background);
   border: thin solid transparent;
   font-size: inherit;
   text-decoration: none;
   padding: 10px 25px;
   display: block;
   max-width: max-content;
+  transition: 0.3s ease-in-out;
 }
 
 .action-button:hover {
-  background-color: var(--white);
-  border-color: var(--blue);
-  color: var(--blue);
+  background-color: transparent;
+  border-color: var(--yellow);
+  color: var(--yellow);
 }

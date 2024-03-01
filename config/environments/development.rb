@@ -73,4 +73,8 @@ Rails.application.configure do
 
   # Raise error when a before_action's only/except options reference missing actions
   config.action_controller.raise_on_missing_callback_actions = true
+
+  ENV['BOLETOSIMPLES_ENV'] = 'sandbox'
+  ENV['BOLETOSIMPLES_API_TOKEN'] = 'EeDnpWKmxdpVDU2tUxrddz2IR0-vRaEuEEG4g4_ZV4A'
+  ENV['BOLETOSIMPLES_DEBUG'] = 'true'
 end
