@@ -1,75 +1,117 @@
-<%= form_with(local: true) do |form| %>
-</>
-<% if 1 == 0 %>
-<div class="errors-container">
-  <h2><%= pluralize(1, "erro(s)") %> impediram que este boleto fosse salvo:</h2>
+<%= form_tag({ action: (@bank_slip.new_record? ? "create" : "update"), id:
+@bank_slip.try(:id) }, method: (@bank_slip.new_record? ? "post" : "patch")) do
+%>
 
-  <ul>
-    <% ["message 1", "message 2"].each do |message| %>
-    <li><%= message %></li>
-    <% end %>
-  </ul>
+<div>
+  <% if 1 == 0 %>
+  <div class="errors-container">
+    <h2>
+      <%= pluralize(1, "erro(s)") %> impediram que este boleto fosse salvo:
+    </h2>
+
+    <ul>
+      <% ["message 1", "message 2"].each do |message| %>
+      <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
 </div>
-<% end %>
 
 <div class="form-container">
   <!-- amount -->
   <div class="form-field">
-    <div class="form-label-container"></div>
-    <div class="form-input-container"></div>
+    <div class="form-label-container"><%= label_tag(:amount, "Valor") %></div>
+    <div class="form-input-container">
+      <%= text_field_tag(:amount, @bank_slip.amount) %>
+    </div>
   </div>
 
   <!-- expire_at -->
   <div class="field form-field">
-    <div class="form-label-container"></div>
-    <div class="form-input-container"></div>
+    <div class="form-label-container">
+      <%= label_tag(:expire_at, "Data de Vencimento") %>
+    </div>
+    <div class="form-input-container">
+      <%= text_field_tag(:expire_at, @bank_slip.expire_at) %>
+    </div>
   </div>
 
   <!-- customer_person_name -->
   <div class="form-field">
-    <div class="form-label-container"></div>
-    <div class="form-input-container"></div>
+    <div class="form-label-container">
+      <%= label_tag(:customer_person_name, "Nome") %>
+    </div>
+    <div class="form-input-container">
+      <%= text_field_tag(:customer_person_name, @bank_slip.customer_person_name)
+      %>
+    </div>
   </div>
 
   <!-- customer_cnpj_cpf -->
-  <div class="field form-field">
-    <div class="form-label-container"></div>
-    <div class="form-input-container"></div>
-  </div>
-
-  <!-- customer_state -->
-  <div class="field form-field">
-    <div class="form-label-container"></div>
-    <div class="form-input-container"></div>
-  </div>
-
-  <!-- customer_city_name -->
-  <div class="field form-field">
-    <div class="form-label-container"></div>
-    <div class="form-input-container"></div>
+  <div class="form-field">
+    <div class="form-label-container">
+      <%= label_tag(:customer_cnpj_cpf, "CNPJ/CPF") %>
+    </div>
+    <div class="form-input-container">
+      <%= text_field_tag(:customer_cnpj_cpf, @bank_slip.customer_cnpj_cpf) %>
+    </div>
   </div>
 
   <!-- customer_zipcode -->
-  <div class="field form-field">
-    <div class="form-label-container"></div>
-    <div class="form-input-container"></div>
+  <div class="form-field">
+    <div class="form-label-container">
+      <%= label_tag(:customer_zipcode, "CEP") %>
+    </div>
+    <div class="form-input-container">
+      <%= text_field_tag(:customer_zipcode, @bank_slip.customer_zipcode) %>
+    </div>
   </div>
 
   <!-- customer_address -->
-  <div class="field form-field">
-    <div class="form-label-container"></div>
-    <div class="form-input-container"></div>
+  <div class="form-field">
+    <div class="form-label-container">
+      <%= label_tag(:customer_address, "Endereço") %>
+    </div>
+    <div class="form-input-container">
+      <%= text_field_tag(:customer_address, @bank_slip.customer_address) %>
+    </div>
   </div>
 
   <!-- customer_neighborhood -->
-  <div class="field form-field">
-    <div class="form-label-container"></div>
-    <div class="form-input-container"></div>
+  <div class="form-field">
+    <div class="form-label-container">
+      <%= label_tag(:customer_neighborhood, "Bairro") %>
+    </div>
+    <div class="form-input-container">
+      <%= text_field_tag(:customer_neighborhood,
+      @bank_slip.customer_neighborhood) %>
+    </div>
+  </div>
+
+  <!-- customer_city_name -->
+  <div class="form-field">
+    <div class="form-label-container">
+      <%= label_tag(:customer_city_name, "Cidade") %>
+    </div>
+    <div class="form-input-container">
+      <%= text_field_tag(:customer_city_name, @bank_slip.customer_city_name) %>
+    </div>
+  </div>
+
+  <!-- customer_state -->
+  <div class="form-field">
+    <div class="form-label-container">
+      <%= label_tag(:customer_state, "Estado") %>
+    </div>
+    <div class="form-input-container">
+      <%= text_field_tag(:customer_state, @bank_slip.customer_state) %>
+    </div>
   </div>
 
   <% unless readonly %>
   <div class="field form-buttons">
-    <%= form.submit class: 'action-button' %>
+    <%= submit_tag "Salvar", class: 'action-button' %>
   </div>
   <% end %>
 </div>

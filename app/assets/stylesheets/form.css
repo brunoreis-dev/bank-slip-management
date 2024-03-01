@@ -9,8 +9,6 @@
 }
 
 .form-field {
-  display: grid;
-  font-size: 1.5em;
   grid-template-columns: [col] 30% [col] 70%;
   margin-top: 20px;
 }
@@ -32,18 +30,20 @@
   text-align: right;
 }
 
-.form-label {
+.form-label-container label {
   font-size: inherit;
+  font-size: 0.8rem;
 }
 
-.form-input {
-  background-color: var(--white);
-  border: thin solid var(--green);
+.form-input-container input {
+  border: thin solid var(--blue);
   display: block;
   font-size: inherit;
   text-align: left;
-  padding: 15px;
+  padding: 8px;
   width: 100%;
+  outline: none;
+  border-radius: 2px;
 }
 
 .form-input-container em {
