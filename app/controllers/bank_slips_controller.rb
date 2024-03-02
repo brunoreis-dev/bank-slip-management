@@ -24,6 +24,27 @@ class BankSlipsController < ApplicationController
   end
 
   def create
+    @bank_billet = BoletoSimples::BankBillet.create(
+      amount: params[:amount],
+      expire_at: params[:expire_at],
+      customer_person_name: params[:customer_person_name],
+      customer_cnpj_cpf: params[:customer_cnpj_cpf],
+      customer_state: params[:customer_state],
+      customer_city_name: params[:customer_city_name],
+      customer_zipcode: params[:customer_zipcode],
+      customer_address: params[:customer_address],
+      customer_neighborhood: params[:customer_neighborhood],
+    )
+
+    if @bank_billet.persisted?
+      respond_to do |format|
+        format.html { redirect_to bank_slips_path, notice: 'Criado com sucesso' }
+      end
+    else
+      error_titles = @bank_billet.response_errors.map { |attribute, messages| messages.map { |message| "#{attribute}: #{message}" } }.flatten
+      flash[:error_list] = error_titles
+      redirect_to new_bank_slip_path
+    end
   end
 
   def edit
@@ -45,7 +66,7 @@ class BankSlipsController < ApplicationController
   end
 
   def update
-
+    puts "Hello world ALOU"
   end
 
   def cancel

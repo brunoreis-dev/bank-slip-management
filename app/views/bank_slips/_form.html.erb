@@ -3,14 +3,15 @@
 %>
 
 <div>
-  <% if 1 == 0 %>
+  <% if flash[:error_list].present? %>
   <div class="errors-container">
     <h2>
-      <%= pluralize(1, "erro(s)") %> impediram que este boleto fosse salvo:
+      <%= pluralize(flash[:error_list].count, "erro(s)") %> impediram que este
+      boleto fosse salvo:
     </h2>
 
     <ul>
-      <% ["message 1", "message 2"].each do |message| %>
+      <% flash[:error_list].each do |message| %>
       <li><%= message %></li>
       <% end %>
     </ul>
