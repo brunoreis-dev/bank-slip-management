@@ -1,7 +1,7 @@
 require 'date'
 
 class BankSlipsController < ApplicationController
-  before_action :get_params_id, only: [:cancel, :edit]
+  before_action :get_params_id, only: [:cancel, :edit, :update]
 
   def index
     begin
@@ -73,7 +73,25 @@ class BankSlipsController < ApplicationController
   end
 
   def update
-    puts "Hello world ALOU"
+    begin
+      puts "::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::MERMAO"
+      @bank_billet = BoletoSimples::BankBillet.find(@bank_billet_id)
+      @bank_billet.expire_at = Date.strptime(params[:expire_at], '%d/%m/%Y').strftime('%Y-%m-%d')
+      @bank_billet.amount = params[:amount]
+
+      if @bank_billet.save
+        respond_to do |format|
+          format.html { redirect_to bank_slips_path, notice: 'Atualizado com sucesso' }
+        end
+      else
+        error_titles = @bank_billet.response_errors.map { |attribute, messages| messages.map { |message| "#{attribute}: #{message}" } }.flatten
+        flash[:error_list] = error_titles
+        redirect_to new_bank_slip_path
+      end
+    rescue StandardError => e
+      flash[:error] = "Boleto não encontado: #{e.message}"
+      redirect_back fallback_location: root_path
+    end
   end
 
   def cancel
