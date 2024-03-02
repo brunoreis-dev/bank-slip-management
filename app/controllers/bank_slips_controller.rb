@@ -74,7 +74,6 @@ class BankSlipsController < ApplicationController
 
   def update
     begin
-      puts "::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::MERMAO"
       @bank_billet = BoletoSimples::BankBillet.find(@bank_billet_id)
       @bank_billet.expire_at = Date.strptime(params[:expire_at], '%d/%m/%Y').strftime('%Y-%m-%d')
       @bank_billet.amount = params[:amount]
