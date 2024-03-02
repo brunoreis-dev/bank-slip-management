@@ -80,10 +80,10 @@ class BankSlipsController < ApplicationController
 
       @bank_billet = BoletoSimples::BankBillet.cancel(id: @bank_billet_id)
 
-      if @bank_billet.response_errors.nil?
+      if @bank_billet.response_errors.empty?
         respond_to do |format|
-          format.html { redirect_to bank_slips_path, notice: 'Cancelado com sucesso' }
-        end
+        format.html { redirect_to bank_slips_path, notice: 'Cancelado com sucesso' }
+      end
       else
         error_titles = @bank_billet.response_errors.map { |error| error[:title] }
         flash[:error] = error_titles.join(", ")
