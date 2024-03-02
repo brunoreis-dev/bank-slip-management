@@ -28,7 +28,7 @@ class BankSlipsController < ApplicationController
   def create
     @bank_billet = BoletoSimples::BankBillet.create(
       amount: params[:amount],
-      expire_at: Date.strptime(params[:expire_at], '%d/%m/%Y').strftime('%Y-%m-%d'),
+      expire_at: params[:expire_at],
       customer_person_name: params[:customer_person_name],
       customer_cnpj_cpf: params[:customer_cnpj_cpf],
       customer_state: params[:customer_state],
@@ -75,7 +75,7 @@ class BankSlipsController < ApplicationController
   def update
     begin
       @bank_billet = BoletoSimples::BankBillet.find(@bank_billet_id)
-      @bank_billet.expire_at = Date.strptime(params[:expire_at], '%d/%m/%Y').strftime('%Y-%m-%d')
+      @bank_billet.expire_at = params[:expire_at]
       @bank_billet.amount = params[:amount]
 
       if @bank_billet.save
@@ -85,7 +85,7 @@ class BankSlipsController < ApplicationController
       else
         error_titles = @bank_billet.response_errors.map { |attribute, messages| messages.map { |message| "#{attribute}: #{message}" } }.flatten
         flash[:error_list] = error_titles
-        redirect_to new_bank_slip_path
+        redirect_to edit_bank_slip_path
       end
     rescue StandardError => e
       flash[:error] = "Boleto não encontado: #{e.message}"
