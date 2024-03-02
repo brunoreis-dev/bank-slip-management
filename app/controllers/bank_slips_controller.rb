@@ -48,21 +48,26 @@ class BankSlipsController < ApplicationController
   end
 
   def edit
-    bank_billet_data = BoletoSimples::BankBillet.find(@bank_billet_id).data
+    begin
+      bank_billet_data = BoletoSimples::BankBillet.find(@bank_billet_id).data
 
-    @bank_slip = BankSlip.new(
-      id: bank_billet_data[:id],
-      amount: bank_billet_data[:amount],
-      status: bank_billet_data[:status],
-      expire_at: bank_billet_data[:expire_at],
-      customer_person_name: bank_billet_data[:customer_person_name],
-      customer_cnpj_cpf: bank_billet_data[:customer_cnpj_cpf],
-      customer_state: bank_billet_data[:customer_state],
-      customer_city_name: bank_billet_data[:customer_city_name],
-      customer_zipcode: bank_billet_data[:customer_zipcode],
-      customer_address: bank_billet_data[:customer_address],
-      customer_neighborhood: bank_billet_data[:customer_neighborhood],
-    )
+      @bank_slip = BankSlip.new(
+        id: bank_billet_data[:id],
+        amount: bank_billet_data[:amount],
+        status: bank_billet_data[:status],
+        expire_at: bank_billet_data[:expire_at],
+        customer_person_name: bank_billet_data[:customer_person_name],
+        customer_cnpj_cpf: bank_billet_data[:customer_cnpj_cpf],
+        customer_state: bank_billet_data[:customer_state],
+        customer_city_name: bank_billet_data[:customer_city_name],
+        customer_zipcode: bank_billet_data[:customer_zipcode],
+        customer_address: bank_billet_data[:customer_address],
+        customer_neighborhood: bank_billet_data[:customer_neighborhood],
+      )
+    rescue StandardError => e
+      flash[:error] = "Boleto não encontado: #{e.message}"
+      redirect_back fallback_location: root_path
+    end
   end
 
   def update
@@ -70,16 +75,23 @@ class BankSlipsController < ApplicationController
   end
 
   def cancel
-    @bank_billet = BoletoSimples::BankBillet.cancel(id: @bank_billet_id)
+    begin
+      BoletoSimples::BankBillet.find(@bank_billet_id)
 
-    if @bank_billet.response_errors.nil?
-      respond_to do |format|
-        format.html { redirect_to bank_slips_path, notice: 'Cancelado com sucesso' }
+      @bank_billet = BoletoSimples::BankBillet.cancel(id: @bank_billet_id)
+
+      if @bank_billet.response_errors.nil?
+        respond_to do |format|
+          format.html { redirect_to bank_slips_path, notice: 'Cancelado com sucesso' }
+        end
+      else
+        error_titles = @bank_billet.response_errors.map { |error| error[:title] }
+        flash[:error] = error_titles.join(", ")
+        redirect_to bank_slips_path
       end
-    else
-      error_titles = @bank_billet.response_errors.map { |error| error[:title] }
-      flash[:error] = error_titles.join(", ")
-      redirect_to bank_slips_path
+    rescue StandardError => e
+      flash[:error] = "Boleto não encontado: #{e.message}"
+      redirect_back fallback_location: root_path
     end
   end
 
