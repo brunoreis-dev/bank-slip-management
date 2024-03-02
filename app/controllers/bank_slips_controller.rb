@@ -1,3 +1,5 @@
+require 'date'
+
 class BankSlipsController < ApplicationController
   before_action :get_params_id, only: [:cancel, :edit]
 
@@ -6,7 +8,7 @@ class BankSlipsController < ApplicationController
       @bank_slips = BoletoSimples::BankBillet.all(page: 1, per_page: 50).map do |bank_billet|
         BankSlip.new(
           id: bank_billet.id,
-          amount: bank_billet.amount,
+          amount: format('%.2f', bank_billet.amount),
           status: bank_billet.status,
           expire_at: bank_billet.expire_at,
           customer_person_name: bank_billet.customer_person_name,
@@ -26,7 +28,7 @@ class BankSlipsController < ApplicationController
   def create
     @bank_billet = BoletoSimples::BankBillet.create(
       amount: params[:amount],
-      expire_at: params[:expire_at],
+      expire_at: Date.strptime(params[:expire_at], '%d/%m/%Y').strftime('%Y-%m-%d'),
       customer_person_name: params[:customer_person_name],
       customer_cnpj_cpf: params[:customer_cnpj_cpf],
       customer_state: params[:customer_state],
@@ -53,7 +55,7 @@ class BankSlipsController < ApplicationController
 
       @bank_slip = BankSlip.new(
         id: bank_billet_data[:id],
-        amount: bank_billet_data[:amount],
+        amount: format('%.2f', bank_billet_data[:amount]),
         status: bank_billet_data[:status],
         expire_at: bank_billet_data[:expire_at],
         customer_person_name: bank_billet_data[:customer_person_name],
@@ -76,8 +78,6 @@ class BankSlipsController < ApplicationController
 
   def cancel
     begin
-      BoletoSimples::BankBillet.find(@bank_billet_id)
-
       @bank_billet = BoletoSimples::BankBillet.cancel(id: @bank_billet_id)
 
       if @bank_billet.response_errors.empty?

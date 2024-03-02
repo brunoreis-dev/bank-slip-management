@@ -24,7 +24,7 @@
   <div class="form-field">
     <div class="form-label-container"><%= label_tag(:amount, "Valor") %></div>
     <div class="form-input-container">
-      <%= text_field_tag(:amount, @bank_slip.amount) %>
+      <%= text_field_tag(:amount, @bank_slip.amount, class: 'amount-field') %>
     </div>
   </div>
 
@@ -34,7 +34,10 @@
       <%= label_tag(:expire_at, "Data de Vencimento") %>
     </div>
     <div class="form-input-container">
-      <%= text_field_tag(:expire_at, @bank_slip.expire_at) %>
+      <% if edit %> <%= text_field_tag(:expire_at,
+      Date.parse(@bank_slip.expire_at).strftime("%d/%m/%Y"), class:
+      'due-date-field') %> <% else %> <%= text_field_tag(:expire_at,
+      @bank_slip.expire_at, class: 'due-date-field') %> <% end %>
     </div>
   </div>
 
@@ -44,8 +47,8 @@
       <%= label_tag(:customer_person_name, "Nome") %>
     </div>
     <div class="form-input-container">
-      <%= text_field_tag(:customer_person_name, @bank_slip.customer_person_name)
-      %>
+      <%= text_field_tag(:customer_person_name, @bank_slip.customer_person_name,
+      disabled: edit) %>
     </div>
   </div>
 
@@ -55,7 +58,8 @@
       <%= label_tag(:customer_cnpj_cpf, "CNPJ/CPF") %>
     </div>
     <div class="form-input-container">
-      <%= text_field_tag(:customer_cnpj_cpf, @bank_slip.customer_cnpj_cpf) %>
+      <%= text_field_tag(:customer_cnpj_cpf, @bank_slip.customer_cnpj_cpf,
+      disabled: edit, class: 'cpf-cnpj-field') %>
     </div>
   </div>
 
@@ -65,7 +69,8 @@
       <%= label_tag(:customer_zipcode, "CEP") %>
     </div>
     <div class="form-input-container">
-      <%= text_field_tag(:customer_zipcode, @bank_slip.customer_zipcode) %>
+      <%= text_field_tag(:customer_zipcode, @bank_slip.customer_zipcode,
+      disabled: edit, class: 'cep-field') %>
     </div>
   </div>
 
@@ -75,7 +80,8 @@
       <%= label_tag(:customer_address, "Endereço") %>
     </div>
     <div class="form-input-container">
-      <%= text_field_tag(:customer_address, @bank_slip.customer_address) %>
+      <%= text_field_tag(:customer_address, @bank_slip.customer_address,
+      disabled: edit) %>
     </div>
   </div>
 
@@ -86,7 +92,7 @@
     </div>
     <div class="form-input-container">
       <%= text_field_tag(:customer_neighborhood,
-      @bank_slip.customer_neighborhood) %>
+      @bank_slip.customer_neighborhood, disabled: edit) %>
     </div>
   </div>
 
@@ -96,7 +102,8 @@
       <%= label_tag(:customer_city_name, "Cidade") %>
     </div>
     <div class="form-input-container">
-      <%= text_field_tag(:customer_city_name, @bank_slip.customer_city_name) %>
+      <%= text_field_tag(:customer_city_name, @bank_slip.customer_city_name,
+      disabled: edit) %>
     </div>
   </div>
 
@@ -106,14 +113,13 @@
       <%= label_tag(:customer_state, "Estado") %>
     </div>
     <div class="form-input-container">
-      <%= text_field_tag(:customer_state, @bank_slip.customer_state) %>
+      <%= text_field_tag(:customer_state, @bank_slip.customer_state, disabled:
+      edit) %>
     </div>
   </div>
 
-  <% unless readonly %>
   <div class="field form-buttons">
     <%= submit_tag "Salvar", class: 'action-button' %>
   </div>
-  <% end %>
 </div>
 <% end %>

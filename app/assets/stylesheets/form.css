@@ -46,6 +46,10 @@
   border-radius: 2px;
 }
 
+.form-input-container input:disabled {
+  color: var(--comments);
+}
+
 .form-input-container em {
   font-size: 0.6em;
 }
