@@ -75,6 +75,6 @@ Rails.application.configure do
   config.action_controller.raise_on_missing_callback_actions = true
 
   ENV['BOLETOSIMPLES_ENV'] = 'sandbox'
-  ENV['BOLETOSIMPLES_API_TOKEN'] = 'EeDnpWKmxdpVDU2tUxrddz2IR0-vRaEuEEG4g4_ZV4A'
+  ENV['BOLETOSIMPLES_API_TOKEN'] = 'YOUR_API_TOKEN'
   ENV['BOLETOSIMPLES_DEBUG'] = 'true'
 end

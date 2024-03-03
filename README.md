@@ -2,12 +2,19 @@
 
 Ruby on Rails application to manage Bank Slips.
 
+![Bank Slip list](public/img/bank_slip_image.png)
+
 ## Functionality
 
 - I can see all the bank splips on the list in an overview.
 - I can add a bank slip.
 - I can edit a bank slip.
-- I can cancel a bank spli.
+- I can cancel a bank slip.
+
+## Enviroments
+
+Change the ENV['BOLETOSIMPLES_API_TOKEN'] on configs to your api token.
+https://app-sandbox.kobana.com.br/users/sign_in
 
 ## Running the app
 
@@ -23,7 +30,7 @@ Install all dependancies:
 $ bundle install
 ```
 
-Start memcache in localhost: 11211:
+Start memcache at localhost: 11211:
 
 - install memcache on your machine and run this command for create a memory cache with dalli
 
