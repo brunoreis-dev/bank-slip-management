@@ -1,6 +1,7 @@
 require_relative "boot"
 
 require "rails/all"
+require 'dalli'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -23,5 +24,6 @@ module BankSlipManagement
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+    config.cache_store = :dalli_store, 'localhost:11211'
   end
 end

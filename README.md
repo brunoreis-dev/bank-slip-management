@@ -23,6 +23,14 @@ Install all dependancies:
 $ bundle install
 ```
 
+Start memcache in localhost: 11211:
+
+- install memcache on your machine and run this command for create a memory cache with dalli
+
+```
+$ memcached -p 11211
+```
+
 Start the server:
 
 ```
